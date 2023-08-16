@@ -25,15 +25,11 @@ public class BatchConfiguration {
     @Bean
     public FlatFileItemReader<Customer> reader() {
         return new FlatFileItemReaderBuilder<Customer>()
-                .name("personItemReader")
+                .name("customerReader")
                 .resource(new ClassPathResource("data.csv"))
                 .delimited()
-                .names(new String[] { "firstName", "lastName" })
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<Customer>() {
-                    {
-                        setTargetType(Customer.class);
-                    }
-                })
+                .names(new String[] { "firstName", "lastName","birthday","gender","married" })
+                .fieldSetMapper(new CustomerMapper())
                 .build();
     }
 
@@ -41,14 +37,14 @@ public class BatchConfiguration {
     public JdbcBatchItemWriter<Customer> writer(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<Customer>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO people (first_name, last_name, birthday, sex, married) VALUES (:firstName, :lastName, :birthday, :sex, :married)")
+                .sql("INSERT INTO customer (first_name, last_name, birthday, gender, married) VALUES (:firstName, :lastName, :birthday, :gender, :married)")
                 .dataSource(dataSource)
                 .build();
     }
 
     @Bean
     public Job importUserJob(JobRepository jobRepository,
-            JobCompletionNatificationListener listener, Step step1) {
+            JobCompletionNotificationListener listener, Step step1) {
         return new JobBuilder("importUserJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
                 .listener(listener)
