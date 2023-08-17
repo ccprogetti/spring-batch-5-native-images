@@ -1,0 +1,11 @@
+public class MyRuntimeHints implements RuntimeHintsRegistrar {
+
+    @Override
+    public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
+      
+        // Register resources
+        hints.resources().registerPattern("data.csv");
+        System.out.println("file registered");
+    }
+
+}
