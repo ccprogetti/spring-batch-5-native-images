@@ -18,5 +18,4 @@ public class CustomerItemProcessor implements ItemProcessor<Customer, Customer> 
 
         return customer;
     }
-
 }

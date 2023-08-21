@@ -14,5 +14,5 @@ public class Customer {
      String gender;
      boolean married;
     
-    }
+}
     
