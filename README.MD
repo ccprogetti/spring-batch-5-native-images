@@ -4,6 +4,7 @@ To Build a native Docker image with Maven simply execute:
 ```
 mvn -Pnative spring-boot:build-image
 ```
+This starts 
 To start the image with Docker after the build:
 
 ```

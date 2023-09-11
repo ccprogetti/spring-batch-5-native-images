@@ -12,7 +12,7 @@ public class NativeCompileHints implements RuntimeHintsRegistrar {
         // Register CSV file
         hints.resources().registerPattern("data.csv");
 
-        // add lombok generated methods
+        // add lombok generated methods for Customer type
         hints.reflection().registerType(Customer.class, MemberCategory.values());
         
     }
