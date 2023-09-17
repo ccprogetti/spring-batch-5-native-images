@@ -1,4 +1,5 @@
 #How to build a native application as a Docker image
+
 To Build a native Docker image with Maven simply execute:
 
 ```
