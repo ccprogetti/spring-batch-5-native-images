@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportRuntimeHints;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import jakarta.persistence.EntityManagerFactory;
@@ -23,11 +24,22 @@ import jakarta.persistence.EntityManagerFactory;
 @ImportRuntimeHints(NativeCompileHints.class)
 public class BatchConfiguration {
 
+    // @Bean
+    // public FlatFileItemReader<Customer> reader() {
+    //     return new FlatFileItemReaderBuilder<Customer>()
+    //             .name("customerReader")
+    //             .resource(new ClassPathResource("data.csv"))
+    //             .delimited()
+    //             .names(new String[] { "firstName", "lastName","birthday","gender","married" })
+    //             .fieldSetMapper(new CustomerMapper())
+    //             .build();
+    // }
+
     @Bean
     public FlatFileItemReader<Customer> reader() {
         return new FlatFileItemReaderBuilder<Customer>()
                 .name("customerReader")
-                .resource(new ClassPathResource("data.csv"))
+                .resource(new FileSystemResource("./data.csv"))
                 .delimited()
                 .names(new String[] { "firstName", "lastName","birthday","gender","married" })
                 .fieldSetMapper(new CustomerMapper())
