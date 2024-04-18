@@ -24,22 +24,13 @@ import jakarta.persistence.EntityManagerFactory;
 @ImportRuntimeHints(NativeCompileHints.class)
 public class BatchConfiguration {
 
-    // @Bean
-    // public FlatFileItemReader<Customer> reader() {
-    //     return new FlatFileItemReaderBuilder<Customer>()
-    //             .name("customerReader")
-    //             .resource(new ClassPathResource("data.csv"))
-    //             .delimited()
-    //             .names(new String[] { "firstName", "lastName","birthday","gender","married" })
-    //             .fieldSetMapper(new CustomerMapper())
-    //             .build();
-    // }
-
+    
     @Bean
     public FlatFileItemReader<Customer> reader() {
         return new FlatFileItemReaderBuilder<Customer>()
                 .name("customerReader")
-                .resource(new FileSystemResource("./data.csv"))
+                .resource(new ClassPathResource("data.csv"))
+                //.resource(new FileSystemResource("./data.csv"))
                 .delimited()
                 .names(new String[] { "firstName", "lastName","birthday","gender","married" })
                 .fieldSetMapper(new CustomerMapper())

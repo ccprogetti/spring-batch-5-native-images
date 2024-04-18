@@ -16,7 +16,7 @@ public class CustomerItemProcessor implements ItemProcessor<Customer, Customer> 
     @Override
     public Customer process(Customer customer) throws Exception {
 
-        LOG.info("Customer received:" + customer.getFirstName() + " " + customer.getLastName());
+        LOG.trace("Customer received:" + customer.getFirstName() + " " + customer.getLastName());
 
         return customer;
     }
